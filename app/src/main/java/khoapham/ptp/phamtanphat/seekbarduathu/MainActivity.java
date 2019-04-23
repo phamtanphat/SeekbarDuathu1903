@@ -77,18 +77,32 @@ public class MainActivity extends AppCompatActivity {
         Random random = new Random();
 
         final int value1 = random.nextInt(10) + 1;
-        int value2 = random.nextInt(10) + 1;
-        int value3 = random.nextInt(10) + 1;
+        final int value2 = random.nextInt(10) + 2;
+        final int value3 = random.nextInt(10) + 3;
 
-        CountDownTimer countDownTimer = new CountDownTimer(60000 , 1000) {
+        final CountDownTimer countDownTimer = new CountDownTimer(60000 , 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                skMot.setProgress(skMot.getProgress() + value1);
+                if (skMot.getProgress() >= 100){
+                    this.onFinish();
+                }else if (skHai.getProgress() >= 100){
+                    this.onFinish();
+                }else if (skBa.getProgress() >= 100){
+                    this.onFinish();
+                }else{
+                    skMot.setProgress(skMot.getProgress() + value1);
+                    skHai.setProgress(skHai.getProgress() + value2);
+                    skBa.setProgress(skBa.getProgress() + value3);
+                }
+
             }
 
             @Override
             public void onFinish() {
-
+                skBa.setProgress(0);
+                skMot.setProgress(0);
+                skHai.setProgress(0);
+                this.cancel();
             }
         };
         countDownTimer.start();
