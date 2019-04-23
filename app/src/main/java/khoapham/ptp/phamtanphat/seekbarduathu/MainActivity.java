@@ -1,5 +1,6 @@
 package khoapham.ptp.phamtanphat.seekbarduathu;
 
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Toast;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -67,5 +70,28 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        randomseekbar();
     }
+
+    private void randomseekbar() {
+        Random random = new Random();
+
+        final int value1 = random.nextInt(10) + 1;
+        int value2 = random.nextInt(10) + 1;
+        int value3 = random.nextInt(10) + 1;
+
+        CountDownTimer countDownTimer = new CountDownTimer(60000 , 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                skMot.setProgress(skMot.getProgress() + value1);
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        };
+        countDownTimer.start();
+    }
+
 }
