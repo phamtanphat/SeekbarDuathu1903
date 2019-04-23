@@ -30,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
         ckHai = findViewById(R.id.checkboxTwo);
         ckBa = findViewById(R.id.checkboxThree);
 
+        skMot.setEnabled(false);
+        skHai.setEnabled(false);
+        skBa.setEnabled(false);
+
         ckMot.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
