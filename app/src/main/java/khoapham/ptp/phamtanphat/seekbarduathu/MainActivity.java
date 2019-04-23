@@ -64,13 +64,15 @@ public class MainActivity extends AppCompatActivity {
                 // nguoi dung da chon hay chua - Ok
                 // khong duoc chon  nhieu hon 2 o - ok
                 if (ckMot.isChecked() || ckHai.isChecked() || ckBa.isChecked()){
+                    imgPlay.setEnabled(false);
+                    randomseekbar();
 
                 }else{
                     Toast.makeText(MainActivity.this, "Bạn chưa đặt cược!!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        randomseekbar();
+
     }
 
     private void randomseekbar() {
@@ -84,25 +86,39 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 if (skMot.getProgress() >= 100){
+                    if(ckMot.isChecked()){
+                        Toast.makeText(MainActivity.this, "Bạn đã thắng!!", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(MainActivity.this, "Bạn đã thua", Toast.LENGTH_SHORT).show();
+                    }
                     this.onFinish();
                 }else if (skHai.getProgress() >= 100){
+                    if(ckHai.isChecked()){
+                        Toast.makeText(MainActivity.this, "Bạn đã thắng!!", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(MainActivity.this, "Bạn đã thua", Toast.LENGTH_SHORT).show();
+                    }
                     this.onFinish();
                 }else if (skBa.getProgress() >= 100){
+                    if(ckBa.isChecked()){
+                        Toast.makeText(MainActivity.this, "Bạn đã thắng!!", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(MainActivity.this, "Bạn đã thua", Toast.LENGTH_SHORT).show();
+                    }
                     this.onFinish();
                 }else{
                     skMot.setProgress(skMot.getProgress() + value1);
                     skHai.setProgress(skHai.getProgress() + value2);
                     skBa.setProgress(skBa.getProgress() + value3);
                 }
-
             }
-
             @Override
             public void onFinish() {
                 skBa.setProgress(0);
                 skMot.setProgress(0);
                 skHai.setProgress(0);
                 this.cancel();
+                imgPlay.setEnabled(true);
             }
         };
         countDownTimer.start();
